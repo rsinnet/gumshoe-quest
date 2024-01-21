@@ -6,13 +6,12 @@ import { LOCATIONS } from './Locations'
 const LocationScreen: React.FC = () => {
     const params = useParams();
     const locationIndex: number = parseInt(params.locationIndex ?? "0")
-    console.log(typeof locationIndex)
-    console.log(LOCATIONS)
     const location = LOCATIONS[locationIndex];
-    console.log(location.backgroundImage)
 
     return (
-        <div className="location-screen" style={{ backgroundImage: `url(${location.backgroundImage})` }} ></div>
+        <div className="screen" style={{ backgroundImage: `url(${location.backgroundImage})` }} >
+            <div className='screen-title'>{location.name}</div>
+        </div>
     );
 };
 

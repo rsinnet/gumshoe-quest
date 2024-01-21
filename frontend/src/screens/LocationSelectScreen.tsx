@@ -15,7 +15,6 @@ const LocationSelectScreen: React.FC = () => {
     e: React.TouchEvent<HTMLLIElement>,
   ) => {
     e.currentTarget.style.backgroundColor = ""; // Revert color on touch end
-    console.log(locationIndex)
     handleLocationSelect(locationIndex)
   };
 
@@ -23,19 +22,22 @@ const LocationSelectScreen: React.FC = () => {
     navigate(`location/${locationIndex}`)
   }
   return (
-    <div className="location-select-screen">
-      <ul className="location-list">
-        {LOCATIONS.map((location, index) => (
-          <li
-            key={index}
-            className="location-item"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={(e) => handleTouchEnd(index, e)}
-          >
-            {location.name}
-          </li>
-        ))}
-      </ul>
+    <div className="screen location-select-screen">
+      <div className='screen-title'>Select a location to visit</div>
+      <div className="location-list-container">
+        <ul className="location-list">
+          {LOCATIONS.filter((location) => { return location.discovered }).map((location) => (
+            <li
+              key={location.index}
+              className="location-item"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={(e) => handleTouchEnd(location.index, e)}
+            >
+              {location.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
