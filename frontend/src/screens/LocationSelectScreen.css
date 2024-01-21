@@ -1,0 +1,26 @@
+.location-select-screen {
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.location-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.location-item:active {
+  background-color: lightgray;
+  /* Optional: for non-touch devices */
+}

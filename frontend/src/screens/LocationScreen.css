@@ -1,0 +1,41 @@
+.location-screen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-entry-container {
+  padding: 10px;
+  /* Padding around the text box */
+}
+
+.text-entry-container input {
+  width: 100%;
+  /* Full width of the container */
+  padding: 10px;
+  /* Padding inside the text box */
+  border: none;
+  /* No border for the text box */
+  border-radius: 5px;
+  /* Slightly rounded corners */
+  font-size: 16px;
+  /* Size of the text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow for depth */
+}
+
+/* Responsive design adjustments for smaller devices */
+@media (max-width: 600px) {
+  .text-entry-container input {
+    font-size: 14px;
+    /* Smaller font size on smaller screens */
+  }
+}
