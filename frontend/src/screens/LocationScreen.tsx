@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import './LocationScreen.css';
 import { LOCATIONS } from './Locations'
+import ChatBox from '../components/ChatBox'
 
 const LocationScreen: React.FC = () => {
     const params = useParams();
@@ -11,7 +12,8 @@ const LocationScreen: React.FC = () => {
     return (
         <div className="screen" style={{ backgroundImage: `url(${location.backgroundImage})` }} >
             <div className='screen-title'>{location.name}</div>
-        </div>
+            <ChatBox />
+        </div >
     );
 };
 
