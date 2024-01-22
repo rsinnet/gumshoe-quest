@@ -1,0 +1,125 @@
+---
+rules: |
+  Create a game where the user uncovers a mystery.
+
+  The user will interact with the game through natural language to
+  explore the surroundings and have conversations with characters.
+
+  The game will have a number of locations. Each location may have one
+  or more non-player characters. Each location may also have evidence
+  to uncover besides NPC testimony.
+
+facts:
+  - Evelyn's Schedule: |
+      Evelyn was out for a lunch meeting with her editor when the
+      manuscript disappeared.
+  - Window Clue: |
+      A window in the study was found slightly open, suggesting a
+      possible entry point.
+  - Security System Log: |
+      The home security system was deactivated during the time of the
+      disappearance, indicating that someone with access was involved.
+  - Neighbor's Testimony: |
+      A neighbor saw a figure leaving Evelyn's house around the time of
+      the theft but couldn't identify them due to a hoodie and
+      sunglasses.
+  - No Signs of Forced Entry: |
+      There were no signs of forced entry, supporting the theory of the
+      thief having access to the house.
+  - Rival Author: |
+      A rival author had publicly criticized Evelyn's work and was known
+      to be working on a similar topic.
+  - Cryptic Note: |
+      A cryptic note was left on Evelyn's desk, written in a simple
+      substitution cipher. When decoded, it read: “The best stories
+      are worth stealing.”
+  - Editor's Alibi: |
+      Evelyn's editor has a solid alibi, confirmed by multiple witnesses
+      at the restaurant.
+  - Gardener's Observation: |
+      The gardener mentioned seeing Evelyn's assistant acting nervously
+      and fiddling with something in his bag earlier that day.
+  - Assistant's Financial Troubles: |
+      Investigation revealed that Evelyn's assistant was recently in
+      significant debt.
+
+locations:
+  - Evelyn Hart's Home Office:
+      prompt: |
+        An intricately decorated home office with a large wooden desk, papers scattered around, an open window with a curtain slightly blowing in the wind, and a cryptic note on the desk in the center of the image.
+      details:
+        - Key Location for the missing manuscript.
+        - Players can examine the desk, the window, and other objects in the room.
+  - Local Café:
+      prompt: |
+        Cozy café interior with several tables, a counter with a barista, a laptop left unattended on a table in the foreground, and a bulletin board with various notes and flyers in the background.
+      details:
+        - Where Evelyn had her lunch meeting.
+        - Players can talk to the staff or look for left-behind items.
+  - Neighborhood Park:
+      prompt: |
+        A serene park scene with benches, a walking path, a few people walking dogs, a distant figure in a hoodie, and a small, shiny object lying on the ground near the central bench.
+      details:
+        - Near Evelyn's house, a place where locals gather.
+        - Players can eavesdrop on conversations or find items dropped by visitors.
+  - Public Library:
+      prompt: |
+        A grand library interior with tall bookshelves, a reading area, a librarian at a desk, and an open ancient book with cryptic symbols on a table in the foreground.
+      details:
+        - A place Evelyn frequents for research.
+        - Players can access archives or overhear scholars' discussions.
+  - Rival Author's Office:
+      prompt: |
+        A modern office with a computer displaying an article about Evelyn, a bookshelf with various books, some with titles similar to Evelyn’s works, and a trash bin with torn paper pieces.
+      details:
+        - Workspace of Evelyn's competitor.
+        - Players can look for evidence of plagiarism or sabotage.
+  - Police Station:
+      prompt: |
+        A busy police station with officers working, a front desk with a case file labeled 'Evelyn Hart Manuscript' open on the desk, and a CCTV monitor in the background.
+      details:
+        - To review the official report and gather legal insights.
+        - Players can interview the officer in charge of the case.
+  - Local Bookstore:
+      prompt: |
+        A quaint bookstore with shelves of books, a section highlighting Evelyn Hart’s previous works, a gossiping cashier, and a notice board with a flyer about a missing manuscript.
+      details:
+        - A hub for local writers and literary gossip.
+        - Players can gather rumors or insights about Evelyn and her assistant.
+  - Assistant's Apartment:
+      prompt: |
+        A small, cluttered apartment with a desk containing financial bills, a laptop open to an email about debt, and a photo of Evelyn and the assistant on the wall.
+      details:
+        - To investigate personal belongings and potential evidence.
+        - Players need to gain access either through persuasion or finding the key.
+  - Gardener's Shed:
+      prompt: |
+        A garden shed with gardening tools, a muddy pair of boots, a jacket hanging with a key in the pocket, and a window overlooking Evelyn’s house.
+      details:
+        - Belonging to Evelyn's gardener, who might have witnessed something.
+        - Players can find tools or items that might link to the crime scene.
+  - Internet Café:
+      prompt: |
+        A bustling internet café with several users at computers, a history of manuscript thefts on a screen in the foreground, and a corkboard with news clippings about Evelyn Hart.
+      details:
+        - To research background information on characters and relevant topics.
+        - Players can also track digital footprints related to the manuscript.
+
+solution: |
+  Piecing these facts together, the solution points to Evelyn's
+  assistant being the culprit. The assistant had access to the house
+  and could deactivate the security system (Fact 3), explaining the lack
+  of forced entry (Fact 5). The gardener's observation (Fact 9) and the
+  assistant's financial troubles (Fact 10) provide motive and suspicious
+  behavior. The cryptic note (Fact 7) seems like a red herring, possibly
+  intended to mislead the investigation or throw suspicion on the rival
+  author, who is known for dramatic gestures (Fact 6). The neighbor's
+  testimony (Fact 4) could align with the assistant's build and the time
+  frame he was at the house. The open window (Fact 2) might have been an
+  attempt to suggest a break-in. Evelyn's absence due to her meeting
+  (Fact 1) provided the perfect opportunity for the theft.
+
+Conclusion: |
+  Evelyn's assistant stole the manuscript, motivated by financial gain,
+  and tried to cover his tracks by implicating the rival author and
+  staging a break-in.
