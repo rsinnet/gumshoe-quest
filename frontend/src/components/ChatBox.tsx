@@ -13,10 +13,12 @@ const ChatBox: React.FC = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const chatBoxRef = useRef<HTMLDivElement>(null);
 
-    const sendMessage = () => {
+    const sendMessage = async () => {
         if (message.trim() !== '') {
             setMessages([...messages, { text: message, sender: 'you' }]);
-            setMessage(''); // Clear the message input
+            setMessage(''); // Clear    the message input
+            const response = await getChatResponse(message.trim());
+            setMessages([...messages, { text: message, sender: 'you' }, { text: response, sender: 'other' }])
         }
     };
 
@@ -52,6 +54,21 @@ const ChatBox: React.FC = () => {
             document.documentElement.addEventListener('mouseup', stopDrag, false);
         }
     };
+
+    const getChatResponse = async (message: string) => {
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            // TODO(RWS): Pass location data.
+            body: JSON.stringify({ message, }),
+        });
+        console.log(response);
+        if ((await response.status) != 200) {
+            throw new Error("Unexpected response.");
+        }
+        return await response.text();
+    };
+
 
     return (
         <Box ref={chatBoxRef} className="chat-box">
