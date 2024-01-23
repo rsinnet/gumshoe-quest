@@ -1,7 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './LocationSelectScreen.css';
-import { LOCATIONS } from './Locations';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./LocationSelectScreen.css";
+import { LOCATIONS } from "./Locations";
 
 const LocationSelectScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -15,18 +15,20 @@ const LocationSelectScreen: React.FC = () => {
     e: React.TouchEvent<HTMLLIElement>,
   ) => {
     e.currentTarget.style.backgroundColor = ""; // Revert color on touch end
-    handleLocationSelect(locationIndex)
+    handleLocationSelect(locationIndex);
   };
 
   const handleLocationSelect = (locationIndex: number) => {
-    navigate(`location/${locationIndex}`)
-  }
+    navigate(`location/${locationIndex}`);
+  };
   return (
     <div className="screen location-select-screen">
-      <div className='screen-title'>Select a location to visit</div>
+      <div className="screen-title">Select a location to visit</div>
       <div className="location-list-container">
         <ul className="location-list">
-          {LOCATIONS.filter((location) => { return location.discovered }).map((location) => (
+          {LOCATIONS.filter((location) => {
+            return location.discovered;
+          }).map((location) => (
             <li
               key={location.index}
               className="location-item"

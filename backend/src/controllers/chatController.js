@@ -20,7 +20,7 @@ const investigateLocation = async (mystery, mysteryProgress, locationIndex) => {
   const location = mystery.locations[locationIndex];
   const vectorStore = await HNSWLib.fromDocuments(
     location.context.map((item) => new Document({ pageContent: item })),
-    new OpenAIEmbeddings()
+    new OpenAIEmbeddings(),
   );
   const retriever = vectorStore.asRetriever(1);
 

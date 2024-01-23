@@ -73,7 +73,7 @@ button {
 }
 
 .screen-title {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 18pt;
   background-color: var(--text-background-color);
   opacity: 0.9;

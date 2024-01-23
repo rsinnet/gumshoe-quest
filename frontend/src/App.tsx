@@ -1,8 +1,8 @@
 import "./global.css";
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LocationSelectScreen from './screens/LocationSelectScreen';
-import LocationScreen from './screens/LocationScreen';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LocationSelectScreen from "./screens/LocationSelectScreen";
+import LocationScreen from "./screens/LocationScreen";
 
 const App: React.FC = () => {
   return (

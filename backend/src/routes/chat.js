@@ -28,7 +28,7 @@ router.post(
       const { response, clue } = investigateLocation(
         mystery,
         mysteryProgress,
-        locationIndex
+        locationIndex,
       );
       res.send({ response, clue });
     } catch (error) {
@@ -36,7 +36,7 @@ router.post(
         .status(500)
         .send(`Error generating chat response: ${error.toString()}`);
     }
-  }
+  },
 );
 
 export default router;
