@@ -11,7 +11,7 @@ const LocationSelectScreen: React.FC = () => {
   const mysteryId: string = params.mysteryId;
 
   const navigate = useNavigate();
-  const [mystery, setMystery] = useState<MysteryProgress | null>();
+  const [progress, setProgress] = useState<MysteryProgress | null>();
 
   const handleTouchStart = (e: React.TouchEvent<HTMLLIElement>) => {
     e.currentTarget.style.backgroundColor = "lightgray"; // Change color on touch start
@@ -38,13 +38,13 @@ const LocationSelectScreen: React.FC = () => {
         throw new Error("Unable to fetch mystery data.");
       }
       const data = await response.json();
-      setMystery(data);
+      setProgress(data);
     };
 
     fetchData();
   }, [mysteryId]);
 
-  if (!mystery) {
+  if (!progress) {
     // TODO(RWS): Make a loading screen.
     return (
       <div className="screen location-select-screen">
@@ -54,14 +54,14 @@ const LocationSelectScreen: React.FC = () => {
     );
   }
 
-  console.dir(mystery, { depth: null });
+  console.dir(progress, { depth: null });
 
   return (
     <div className="screen location-select-screen">
       <div className="screen-title">Select a location to visit</div>
       <div className="location-list-container">
         <ul className="location-list">
-          {mystery.locations
+          {progress.locations
             .filter((location) => {
               return location.discovered;
             })
@@ -72,7 +72,7 @@ const LocationSelectScreen: React.FC = () => {
                 onTouchStart={handleTouchStart}
                 onTouchEnd={(e) => handleTouchEnd(mysteryId, index, e)}
               >
-                {mystery.mystery.locations[index].name}
+                {progress.mystery.locations[index].name}
               </li>
             ))}
         </ul>

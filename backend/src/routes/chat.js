@@ -1,7 +1,7 @@
 import { Router } from "express";
 import investigateLocation from "../controllers/chatController.js";
 import MysteryProgress from "../models/dynamic/MysteryProgress.js";
-import { markClueAsDiscovered } from "../utils/.js";
+import { markClueAsDiscovered } from "../utils.js";
 const router = Router();
 
 router.post(
