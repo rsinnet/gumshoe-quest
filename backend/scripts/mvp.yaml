@@ -1,0 +1,29 @@
+mysteries:
+  - name: The Case of the Missing Manuscript
+    synopsis: >-
+      Some synopsis...
+    locations:
+      - name: Evelyn Hart's Home Office
+        prompt: >-
+          An intricately decorated home office with a large wooden desk, papers scattered around, an open window with a curtain slightly blowing in the wind, and a cryptic note on the desk in the center of the image.
+        context:
+          - >-
+            The user is investigating a stolen manuscript
+          - >-
+            You and the user are in Evelyn Hart's home office
+          - >-
+            The office contains a large wooden desk, a window, and a control panel for the security system
+          - >-
+            The desk is covered in papers and books. There is also a calendar on the desk.
+        clues:
+          - >-
+            If the user looks at the door, they will find that there were no signs of forced entry.
+          - >-
+            If the user asks to check the logs for the security system, they will find that it was disabled and not active at the time of the theft.
+          - >-
+            If the user asks to look at the calendar for the time when the manuscript was stolen, they will find that Evelyn was out to lunch with her editor at the time.
+        misleadingClues:
+          - >-
+            If the user looks through the papers on the desk, they will find a cryptic note. It reads: "The best stories are worth stealing."
+          - >-
+            The window is not locked. In fact, it is slightly open, suggesting a possible entry point.

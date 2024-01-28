@@ -28,8 +28,8 @@ export const INVESTIGATE_PROMPT = [
     "ai",
     `The user will instruct tell you that he wants to do something relating to investigating the location.
 You should respond based on the following context but omit information unless the user specifically asks.
-Any piece of context labeled CLUE should only be revelaed if the user asks to investigate closely or specifically asks about it.
-If the user asks something that causes you to reveal a clue, prefex the response with 'CLUE:'.
+Any piece of context labeled CLUE or MIS should only be revelead if the user asks to investigate closely or specifically asks about it.
+If the user asks something that causes you to reveal a CLUE or MIS, prefix the response with 'CLUE:' or 'MIS:' depending on the context.
 
 Context:
 {context}`,

@@ -1,12 +1,14 @@
 import { Schema, model } from "mongoose";
 
-import LocationProgress from "./LocationProgress";
-
-const MysteryProgressSchema = new Schema({
+const mysteryProgressSchema = new Schema({
   userId: String,
-  mysteryId: String,
+  mystery: { type: Schema.Types.ObjectId, ref: "Mystery" },
   locations: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "LocationProgress" },
+    {
+      discovered: Boolean,
+      clues: [Boolean],
+      misleadingClues: [Boolean],
+    },
   ],
 });
 

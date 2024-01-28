@@ -13,23 +13,46 @@ import "./ChatBox.css";
 interface Message {
   text: string;
   sender: "you" | "other";
+  clue: boolean;
+  misleadingClue: boolean;
 }
 
-const ChatBox: React.FC = () => {
+interface ChatBoxProps {
+  mysteryId: string;
+  locationIndex: number;
+}
+
+const ChatBox: React.FC<ChatBoxProps> = ({ mysteryId, locationIndex }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
+  if (mysteryId === undefined) {
+    throw new Error("mysteryId must be provided.");
+  }
+  if (locationIndex === undefined) {
+    throw new Error("locationIndex must be provided.");
+  }
+
   const sendMessage = async () => {
     if (message.trim() !== "") {
-      setMessages([...messages, { text: message, sender: "you" }]);
+      setMessages([
+        ...messages,
+        { text: message, sender: "you", clue: false, misleadingClue: false },
+      ]);
       setMessage(""); // Clear    the message input
       const response = await getChatResponse(message.trim());
       setMessages([
         ...messages,
-        { text: message, sender: "you" },
-        { text: response, sender: "other" },
+        { text: message, sender: "you", clue: false, misleadingClue: false },
+        {
+          text: response.response,
+          sender: "other",
+          clue: response.clue,
+          misleadingClue: response.misleadingClue,
+        },
       ]);
+      console.log("Response: ", response);
     }
   };
 
@@ -75,17 +98,19 @@ const ChatBox: React.FC = () => {
   };
 
   const getChatResponse = async (message: string) => {
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      // TODO(RWS): Pass location data.
-      body: JSON.stringify({ message }),
-    });
-    console.log(response);
-    if ((await response.status) != 200) {
+    const response = await fetch(
+      `/api/chat/mysteries/${mysteryId}/locations/${locationIndex}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message }),
+      },
+    );
+
+    if (response.status != 200) {
       throw new Error("Unexpected response.");
     }
-    return await response.text();
+    return await response.json();
   };
 
   return (
@@ -96,6 +121,11 @@ const ChatBox: React.FC = () => {
             <ListItem key={index}>
               <Typography
                 color={msg.sender === "you" ? "primary" : "secondary"}
+                sx={
+                  msg.clue || msg.misleadingClue
+                    ? { backgroundColor: "#aaf" }
+                    : {}
+                }
               >
                 {msg.sender === "you" ? "You: " : "Other: "}
                 {msg.text}

@@ -1,43 +1,80 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./LocationSelectScreen.css";
-import { LOCATIONS } from "./Locations";
+import { MysteryProgress } from "../interfaces/MysteryProgress";
 
 const LocationSelectScreen: React.FC = () => {
+  const params = useParams();
+  if (!params.mysteryId) {
+    throw new Error("URL must contain mysteryId.");
+  }
+  const mysteryId: string = params.mysteryId;
+
   const navigate = useNavigate();
+  const [mystery, setMystery] = useState<MysteryProgress | null>();
 
   const handleTouchStart = (e: React.TouchEvent<HTMLLIElement>) => {
     e.currentTarget.style.backgroundColor = "lightgray"; // Change color on touch start
   };
 
   const handleTouchEnd = (
-    locationIndex: number,
+    mysteryId: string,
+    locationId: string,
     e: React.TouchEvent<HTMLLIElement>,
   ) => {
     e.currentTarget.style.backgroundColor = ""; // Revert color on touch end
-    handleLocationSelect(locationIndex);
+    handleLocationSelect(mysteryId, locationId);
   };
 
-  const handleLocationSelect = (locationIndex: number) => {
-    navigate(`location/${locationIndex}`);
+  const handleLocationSelect = (mysteryId: string, locationId: string) => {
+    navigate(`/location/mysteries/${mysteryId}/locations/${locationId}`);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`/api/progress/mysteries/${mysteryId}`);
+      if (response.status != 200) {
+        console.dir(response, { depth: null });
+        throw new Error("Unable to fetch mystery data.");
+      }
+      const data = await response.json();
+      setMystery(data);
+    };
+
+    fetchData();
+  }, [mysteryId]);
+
+  if (!mystery) {
+    // TODO(RWS): Make a loading screen.
+    return (
+      <div className="screen location-select-screen">
+        <div className="screen-title">Select a location to visit</div>
+        <div className="location-list-container" />
+      </div>
+    );
+  }
+
+  console.dir(mystery, { depth: null });
+
   return (
     <div className="screen location-select-screen">
       <div className="screen-title">Select a location to visit</div>
       <div className="location-list-container">
         <ul className="location-list">
-          {LOCATIONS.filter((location) => {
-            return location.discovered;
-          }).map((location) => (
-            <li
-              key={location.index}
-              className="location-item"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={(e) => handleTouchEnd(location.index, e)}
-            >
-              {location.name}
-            </li>
-          ))}
+          {mystery.locations
+            .filter((location) => {
+              return location.discovered;
+            })
+            .map((location, index) => (
+              <li
+                key={index}
+                className="location-item"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={(e) => handleTouchEnd(mysteryId, index, e)}
+              >
+                {mystery.mystery.locations[index].name}
+              </li>
+            ))}
         </ul>
       </div>
     </div>

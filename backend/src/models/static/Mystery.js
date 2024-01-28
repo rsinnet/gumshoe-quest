@@ -1,12 +1,17 @@
 import { Schema, model } from "mongoose";
 
-import Location from "./Location";
-
 const mysterySchema = new Schema({
-  mysteryId: String,
-  mysteryName: String,
+  name: { type: String, unique: true },
   synopsis: String,
-  locations: [{ type: mongoose.Schema.Types.ObjectId, ref: "Context" }],
+  locations: [
+    {
+      name: String,
+      prompt: String,
+      context: [String],
+      clues: [String],
+      misleadingClues: [String],
+    },
+  ],
 });
 
 export default model("Mystery", mysterySchema);
